@@ -2,6 +2,8 @@ import { useState } from "react";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
+import bgImage from './assets/bg.jpg'
+
 
 export default function App() {
   const [page, setPage] = useState("login");
@@ -21,14 +23,24 @@ export default function App() {
   };
 
   return (
-      <div style={{ padding: 20 }}>
-        {!currentUser && page === "login" && (
-          <Login onLogin={handleLogin} goRegister={() => setPage("register")} />
-        )}
-        {!currentUser && page === "register" && (
-          <Register goLogin={() => setPage("login")} />
-        )}
-        {currentUser && <Dashboard user={currentUser} onLogout={handleLogout} />}
-      </div>
+    <div style={{
+    height: "100vh",
+    width: "100%",
+    margin: "0 auto", // center horizontally
+    overflow: "hidden",
+backgroundImage: `url(${bgImage})`,
+    backgroundSize: "cover", // make it cover entire container
+    backgroundPosition: "center", // center the image
+    backgroundRepeat: "no-repeat" // avoid tiling
+
+    }}>
+      {!currentUser && page === "login" && (
+        <Login onLogin={handleLogin} goRegister={() => setPage("register")} />
+      )}
+      {!currentUser && page === "register" && (
+        <Register goLogin={() => setPage("login")} />
+      )}
+      {currentUser && <Dashboard user={currentUser} onLogout={handleLogout} />}
+    </div>
   );
 }
