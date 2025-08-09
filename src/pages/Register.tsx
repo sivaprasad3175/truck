@@ -69,21 +69,94 @@ export default function Register({ goLogin }: Props) {
       overflow: "hidden"
     }}>
 
-      <div style={{ backgroundColor: "white", maxWidth: "400px", margin: "0 auto", padding: "16px" }}>
+      <div style={{
+        backgroundColor: "white", maxWidth: "400px", margin: "0 auto", padding: "16px", borderRadius: "12px"
+      }}>
         <h2 style={{ textAlign: 'center' }}>Mbility Register</h2>
 
-        <input name="name" placeholder="Name" onChange={handleChange} value={form.name} style={inputStyle} />
-        <input name="email" placeholder="Email" onChange={handleChange} value={form.email} style={inputStyle} />
-        <input name="age" type="number" placeholder="Age" onChange={handleChange} value={form.age} style={inputStyle} />
-        <select name="gender" onChange={handleChange} value={form.gender} style={inputStyle}>
-          <option value="">Select Gender</option>
-          <option value="Male">Male</option>
-          <option value="Female">Female</option>
-          <option value="Other">Other</option>
-        </select>
-        <input name="address" placeholder="Address" onChange={handleChange} value={form.address} style={inputStyle} />
-        <input name="password" type="password" placeholder="Password" onChange={handleChange} value={form.password} style={inputStyle} />
-        <input name="confirmPassword" type="password" placeholder="Confirm Password" onChange={handleChange} value={form.confirmPassword} style={inputStyle} />
+        <div style={{ marginBottom: "12px" }}>
+          {/* <label>Name</label> */}
+          <input
+            name="name"
+            placeholder="Enter your name"
+            onChange={handleChange}
+            value={form.name}
+            style={inputStyle}
+          />
+        </div>
+
+        <div style={{ marginBottom: "12px" }}>
+          {/* <label>Email</label> */}
+          <input
+            name="email"
+            placeholder="Enter your email"
+            onChange={handleChange}
+            value={form.email}
+            style={inputStyle}
+          />
+        </div>
+
+        <div style={{ marginBottom: "12px" }}>
+          {/* <label>Age</label> */}
+          <input
+            name="age"
+            type="number"
+            placeholder="Enter your age"
+            onChange={handleChange}
+            value={form.age}
+            style={inputStyle}
+          />
+        </div>
+
+        <div style={{ marginBottom: "12px" }}>
+          {/* <label>Gender</label> */}
+          <select
+            name="gender"
+            onChange={handleChange}
+            value={form.gender}
+            style={inputStyle}
+          >
+            <option value="">Select Gender</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+
+        <div style={{ marginBottom: "12px" }}>
+          {/* <label>Address</label> */}
+          <input
+            name="address"
+            placeholder="Enter your address"
+            onChange={handleChange}
+            value={form.address}
+            style={inputStyle}
+          />
+        </div>
+
+        <div style={{ marginBottom: "12px" }}>
+          {/* <label>Password</label> */}
+          <input
+            name="password"
+            type="password"
+            placeholder="Enter your password"
+            onChange={handleChange}
+            value={form.password}
+            style={inputStyle}
+          />
+        </div>
+
+        <div style={{ marginBottom: "12px" }}>
+          {/* <label>Confirm Password</label> */}
+          <input
+            name="confirmPassword"
+            type="password"
+            placeholder="Confirm your password"
+            onChange={handleChange}
+            value={form.confirmPassword}
+            style={inputStyle}
+          />
+        </div>
         <button onClick={handleRegister} style={buttonStyle}>Register</button>
 
 

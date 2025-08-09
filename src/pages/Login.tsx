@@ -37,7 +37,7 @@ export default function Login({ onLogin, goRegister }: Props) {
           padding: "16px",
           maxWidth: "400px",
           margin: "0 auto", // center horizontally
-          borderRadius: "8px"
+          borderRadius: "12px"
         }}
       >
 
