@@ -1,42 +1,158 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+body, html, #root {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-color: #0a1832;
+  color: white;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+/* .app {
+  min-height: 100vh;
+    height: "100vh",
+    width: "100%",
+    margin: "0 auto", // center horizontally
+    overflow: "hidden",
+backgroundImage: `url(${bgImage})`,
+    backgroundSize: "cover", // make it cover entire container
+    backgroundPosition: "center", // center the image
+    backgroundRepeat: "no-repeat" // avoid tiling
+
+} */
+
+/* Header */
+.header {
+  background: #0a1832;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 40px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.logo img {
+  height: 40px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.nav-menu {
+  display: flex;
+  gap: 25px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
-.card {
-  padding: 2em;
+.nav-menu li {
+  cursor: pointer;
+  font-weight: 500;
+  transition: color 0.3s;
 }
 
-.read-the-docs {
-  color: #888;
+.nav-menu li:hover {
+  color: #4fa3ff;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.lang-select {
+  padding: 5px 8px;
+  border-radius: 4px;
+  border: none;
+  outline: none;
+}
+
+.btn {
+  padding: 8px 16px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  border-radius: 5px;
+  transition: background 0.3s;
+}
+
+.btn.login {
+  background: transparent;
+  color: white;
+  border: 1px solid white;
+}
+
+.btn.login:hover {
+  background: white;
+  color: #0a1832;
+}
+
+.btn.register {
+  background: #1a75ff;
+  color: white;
+}
+
+.btn.register:hover {
+  background: #005ce6;
+}
+
+.btn.primary {
+  background: #1a75ff;
+  color: white;
+  margin-top: 20px;
+}
+
+.btn.primary:hover {
+  background: #005ce6;
+}
+
+/* Hero Section */
+.hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 60px 80px;
+  background: url("./assets/bg-pattern.png") no-repeat center/cover;
+}
+
+.hero-text {
+  max-width: 500px;
+}
+
+.hero-text h1 {
+  font-size: 2.5rem;
+  line-height: 1.3;
+}
+
+.hero-text span {
+  color: #4fa3ff;
+}
+
+.hero-text p {
+  margin-top: 15px;
+  font-size: 1.1rem;
+  color: #cfd9e3;
+}
+
+.hero-image {
+  position: relative;
+}
+
+.circle {
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  overflow: hidden;
+  position: relative;
+  margin-bottom: -60px;
+  z-index: 1;
+}
+
+.circle img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.truck {
+  width: 350px;
+  position: relative;
+  z-index: 2;
 }

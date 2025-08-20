@@ -1,56 +1,69 @@
-import type { User } from "../types";
+import "../App.css";
+import heroTruck from "../assets/truck.png"; // truck image
+import heroPerson from "../assets/person.jpg"; // person image
+import logo from "../assets/logo.png"; // company logo
+import bgImage from '../assets/bg.png'
 
-interface Props {
-  user: string; // We'll pass email to identify the logged-in user
-  onLogout: () => void;
-}
 
-export default function Dashboard({ user, onLogout }: Props) {
-  const users: User[] = JSON.parse(localStorage.getItem("users") || "[]");
-  const currentUser = users.find((u) => u.email === user);
-  console.log(currentUser)
 
-  if (!currentUser) {
+export default function Dashboard() {
+  
+
     return (
-      <div style={{ textAlign: "center" }}>
-        <h2>User not found</h2>
-        <button onClick={onLogout}>Logout</button>
-      </div>
-    );
-  }
+    <div style={{
+    height: "100vh",
+    width: "100%",
+    margin: "0 auto", // center horizontally
+    overflow: "hidden",
+    backgroundImage: `url(${bgImage})`,
+    backgroundSize: "cover", // make it cover entire container
+    backgroundPosition: "center", // center the image
+    backgroundRepeat: "no-repeat" // avoid tiling
 
-  return (
-    <div
-      style={{
-        textAlign: "center",
-        maxWidth: 500,
-        margin: "auto",
-        background: "#fff",
-        padding: 20,
-        borderRadius: 8,
-        boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
-      }}
-    >
-      <h1>Welcome, {currentUser.name} 👋</h1>
-      <p><strong>Email:</strong> {currentUser.email}</p>
-      <p><strong>Age:</strong> {currentUser.age}</p>
-      <p><strong>Gender:</strong> {currentUser.gender}</p>
-      <p><strong>Address:</strong> {currentUser.address}</p>
+    }}>
+      {/* Header */}
+      <header className="header">
+        <div className="logo">
+          <img src={logo} alt="Logo" />
+        </div>
+        <nav>
+          <ul className="nav-menu">
+            <li>Products ▾</li>
+            <li>Solutions ▾</li>
+            <li>Resources ▾</li>
+            <li>Contact</li>
+          </ul>
+        </nav>
+        <div className="header-actions">
+          <select className="lang-select">
+            <option>Eng</option>
+            <option>Esp</option>
+          </select>
+          <button className="btn login">Login</button>
+          <button className="btn register">Register</button>
+        </div>
+      </header>
 
-      <button
-        onClick={onLogout}
-        style={{
-          background: "#ef4444",
-          color: "white",
-          border: "none",
-          padding: "10px 20px",
-          marginTop: "20px",
-          borderRadius: "4px",
-          cursor: "pointer",
-        }}
-      >
-        Logout
-      </button>
+      {/* Hero Section */}
+      <section className="hero">
+        <div className="hero-text">
+          <h1>
+            Smarter tools for <span>every carrier</span>
+          </h1>
+          <p>
+            Get access to the largest freight network in North America so you can
+            get the best load first – and fast – plus tools to maximize profits.
+          </p>
+          <button className="btn primary">Read more →</button>
+        </div>
+
+        <div className="hero-image">
+          <div className="circle">
+            <img src={heroPerson} alt="Person" />
+          </div>
+          <img src={heroTruck} alt="Truck" className="truck" />
+        </div>
+      </section>
     </div>
   );
 }
