@@ -3,22 +3,23 @@ import heroTruck from "../assets/truck.png"; // truck image
 import heroPerson from "../assets/person.jpg"; // person image
 import logo from "../assets/logo.png"; // company logo
 import bgImage from '../assets/bg.png'
+import { Route, Switch, Link, Redirect } from "wouter";
 
 
 
 export default function Dashboard() {
-  
 
-    return (
+
+  return (
     <div style={{
-    height: "100vh",
-    width: "100%",
-    margin: "0 auto", // center horizontally
-    overflow: "hidden",
-    backgroundImage: `url(${bgImage})`,
-    backgroundSize: "cover", // make it cover entire container
-    backgroundPosition: "center", // center the image
-    backgroundRepeat: "no-repeat" // avoid tiling
+      height: "100vh",
+      width: "100%",
+      margin: "0 auto", // center horizontally
+      overflow: "hidden",
+      backgroundImage: `url(${bgImage})`,
+      backgroundSize: "cover", // make it cover entire container
+      backgroundPosition: "center", // center the image
+      backgroundRepeat: "no-repeat" // avoid tiling
 
     }}>
       {/* Header */}
@@ -40,7 +41,12 @@ export default function Dashboard() {
             <option>Esp</option>
           </select>
           <button className="btn login">Login</button>
-          <button className="btn register">Register</button>
+
+          <nav style={{ padding: "10px", background: "#333", color: "#fff" }}>
+            <Link href="/register" style={{ color: "#fff" }}>
+              <button className="btn register">Register</button>
+            </Link>
+          </nav>
         </div>
       </header>
 

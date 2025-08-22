@@ -1,0 +1,116 @@
+.register-container {
+  display: flex;
+  height: 100vh; /* full height viewport */
+  width: 100%;
+}
+
+/* Left image should always be visible */
+.left-image {
+  flex: 1; /* take half space */
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100%; /* full height */
+}
+
+/* Right side form */
+
+.form-container {
+  flex: 1; /* other half */
+  display: flex;
+  align-items: center; /* center vertically */
+  justify-content: center;
+  background: transparent; /* removed background */
+  padding: 20px;
+}
+
+/* Keep form compact, don’t stretch to 100% of parent */
+.form-card {
+  display: flex;
+  flex-direction: column;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  padding: 20px;
+  width: 100%;
+  max-width: 400px; /* keeps form contained */
+  box-sizing: border-box; /* include padding in width */
+}
+
+.form-body {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.form-body input,
+.form-body textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  outline: none;
+  font-size: 14px;
+  box-sizing: border-box; /* prevents overflow */
+}
+
+
+
+
+
+.form-nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+
+
+.form-body input:focus,
+.form-body textarea:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 4px #93c5fd;
+}
+
+.btn-outline {
+  background: #e5e7eb;
+  color: #374151;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background: #2563eb;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.btn-success {
+  background: #16a34a;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* Responsive: Hide left image on small screens */
+@media (max-width: 768px) {
+  .register-container {
+    flex-direction: column;
+  }
+  .left-image {
+    display: none;
+  }
+  .form-container {
+    flex: none;
+    width: 100%;
+    height: 100vh;
+  }
+}
