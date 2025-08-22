@@ -3,7 +3,7 @@ import heroTruck from "../assets/truck.png"; // truck image
 import heroPerson from "../assets/person.jpg"; // person image
 import logo from "../assets/logo.png"; // company logo
 import bgImage from '../assets/bg.png'
-import { Route, Switch, Link, Redirect } from "wouter";
+import {  Link } from "wouter";
 
 
 
