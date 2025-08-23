@@ -1,5 +1,5 @@
 
-// import Dashboard from "./pages/Dashboard";
+// import Home from "./pages/Home";
 // import bgImage from './assets/bg.png'
 
 
@@ -32,26 +32,26 @@
 //     backgroundRepeat: "no-repeat" // avoid tiling
 
 //     }}>
-//       {<Dashboard  />}
+//       {<Home  />}
 //     </div>
 //   );
 // }
 
 // import { Routes, Route } from "react-router-dom";
-// import Dashboard from "./pages/Dashboard";
+// import Home from "./pages/Home";
 // import Register from "./pages/Register";
 
 // export default function App() {
 //   return (
 //     <Routes>
-//       <Route path="/" element={<Dashboard />} />
+//       <Route path="/" element={<Home />} />
 //       <Route path="/register" element={<Register />} />
 //     </Routes>
 //   );
 // }
 
 // import { Routes, Route } from "react-router-dom";
-// import Dashboard from "./pages/Dashboard";
+// import Home from "./pages/Home";
 
 // export default function App() {
 
@@ -66,29 +66,47 @@
 //   return (
 //     <div style={{ padding: "20px", background: "#fff", minHeight: "100vh" }}>
 //       <Routes>
-//         <Route path="/" element={<Dashboard />} />
+//         <Route path="/" element={<Home />} />
 //       </Routes>
 //     </div>
 //   );
 // }
 
-import { Route, Switch, Redirect } from "wouter";
-import Dashboard from "./pages/Dashboard";
+import { Route, Switch, Redirect, useLocation } from "wouter";
+import Home from "./pages/Home";
 import Register from "./pages/Register";
+import Login from "./pages/Login";
+
 
 export default function App() {
+  const [, navigate] = useLocation();
+
   return (
     <div style={{ background: "#f4f4f4", minHeight: "100vh" }}>
-      
+      <Switch>
+        <Route path="/">
+          <Home />
+        </Route>
+        <Route path="/register">
+          <Register />
+        </Route>
+        <Route path="/login">
+          <Login
+            onLogin={(email: string, password: string) => {
+              // TODO: Implement login logic here
+              // Example: authenticate user and redirect
+              console.log("Login with", email, password);
+            }}
+            goRegister={() => navigate("/register")}
+          />
+        </Route>
 
-        <Switch>
-          <Route path="/" component={Dashboard} />
-          <Route path="/register" component={Register} />
-          {/* catch-all redirect */}
-          <Route>
-            <Redirect to="/" />
-          </Route>
-        </Switch>
+        {/* catch-all redirect */}
+        <Route>
+          <Redirect to="/" />
+        </Route>
+      </Switch>
     </div>
   );
 }
+

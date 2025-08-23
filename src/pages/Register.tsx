@@ -1,4 +1,4 @@
-import React, { useState, type ChangeEvent, type FormEvent } from "react";
+import React, { useEffect, useState, type ChangeEvent, type FormEvent } from "react";
 import {
   Box,
   Button,
@@ -39,21 +39,41 @@ export default function RegisterMUI() {
     additionalInfo: "",
   });
 
+  // Hover states for dynamic button labels
+  const [isPrevHovered, setIsPrevHovered] = useState(false);
+  const [isNextHovered, setIsNextHovered] = useState(false);
+
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+
+  // ✅ Redirect after registration success, not on mount
+  useEffect(() => {
+    if (window.location.pathname === "/register" && sessionStorage.getItem("registered") === "true") {
+      window.location.href = "https://sivaprasad3175.github.io/truck";
+    }
+  }, []);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>): void => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleNext = (): void => setStep((prev) => prev + 1);
-  const handleBack = (): void => setStep((prev) => prev - 1);
+  const handleNext = (): void => {
+    if (step < 5) setStep((prev) => prev + 1);
+  };
+  const handleBack = (): void => {
+    if (step > 1) setStep((prev) => prev - 1);
+  };
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
     console.log("Submitted ✅", formData);
+
+    // Save registration status in session
+    sessionStorage.setItem("registered", "true");
+
     alert("Registration Completed!");
+    window.location.href = "https://sivaprasad3175.github.io";
   };
 
   const renderStepContent = (): React.ReactNode => {
@@ -107,18 +127,16 @@ export default function RegisterMUI() {
         );
       case 3:
         return (
-          <>
-            <TextField
-              fullWidth
-              type="password"
-              margin="dense"
-              label="Confirm Password"
-              name="confirmPassword"
-              placeholder="Enter Confirm Password"
-              value={formData.confirmPassword}
-              onChange={handleChange}
-            />
-          </>
+          <TextField
+            fullWidth
+            type="password"
+            margin="dense"
+            label="Confirm Password"
+            name="confirmPassword"
+            placeholder="Enter Confirm Password"
+            value={formData.confirmPassword}
+            onChange={handleChange}
+          />
         );
       case 4:
         return (
@@ -224,7 +242,7 @@ export default function RegisterMUI() {
               <Typography variant="subtitle1" fontWeight="bold" color="primary">
                 Step {step} of 5
               </Typography>
-              <Typography variant="caption" color="textSecondary">
+              <Typography variant="caption" color="text.secondary">
                 Fill the required details
               </Typography>
             </Box>
@@ -235,7 +253,7 @@ export default function RegisterMUI() {
               <Typography variant="subtitle1" fontWeight="bold">
                 Registration Progress
               </Typography>
-              <Typography variant="caption" color="textSecondary">
+              <Typography variant="caption" color="text.secondary">
                 Complete your profile
               </Typography>
             </Box>
@@ -249,7 +267,7 @@ export default function RegisterMUI() {
                 <Typography variant="subtitle1" fontWeight="bold" color="primary">
                   Broker
                 </Typography>
-                <Typography variant="body2" color="textSecondary">
+                <Typography variant="body2" color="text.secondary">
                   Freight broker or agent
                 </Typography>
               </Box>
@@ -258,30 +276,53 @@ export default function RegisterMUI() {
 
           {/* Form */}
           <CardContent>
-            <form onSubmit={handleSubmit}>{renderStepContent()}</form>
+            <form onSubmit={handleSubmit}>
+              {renderStepContent()}
+
+              {/* Buttons inside form ✅ */}
+              <Box mt={3} display="flex" justifyContent="space-between" p={2}>
+                <Button
+                  variant="outlined"
+                  onClick={handleBack}
+                  disabled={step === 1}
+                  sx={{
+                    mr: 2,
+                    color: isPrevHovered ? "#fff" : undefined,
+                    backgroundColor: isPrevHovered ? "#1976d2" : undefined,
+                    borderColor: isPrevHovered ? "#1976d2" : undefined,
+                    '&:hover': {
+                      color: "#fff",
+                      backgroundColor: "#1976d2",
+                      borderColor: "#1976d2",
+                    },
+                  }}
+                  onMouseEnter={() => setIsPrevHovered(true)}
+                  onMouseLeave={() => setIsPrevHovered(false)}
+                >
+                  {isPrevHovered ? "Go Back" : "Previous"}
+                </Button>
+                {step === 5 ? (
+                  <Button
+                    variant="contained"
+                    type="submit"
+                    onMouseEnter={() => setIsNextHovered(true)}
+                    onMouseLeave={() => setIsNextHovered(false)}
+                  >
+                    {isNextHovered ? "Finish" : "Submit"}
+                  </Button>
+                ) : (
+                  <Button
+                    variant="contained"
+                    onClick={handleNext}
+                    onMouseEnter={() => setIsNextHovered(true)}
+                    onMouseLeave={() => setIsNextHovered(false)}
+                  >
+                    {isNextHovered ? "Continue" : "Next"}
+                  </Button>
+                )}
+              </Box>
+            </form>
           </CardContent>
-
-          {/* Buttons */}
-                   <Box mt={3} display="flex" justifyContent="space-between" p={2}>
-            <Button
-              variant="outlined"
-              onClick={handleBack}
-              disabled={step === 1}
-              sx={{ mr: 2 }} // Add right margin for spacing
-            >
-              Previous
-            </Button>
-            {step === 5 ? (
-              <Button variant="contained" type="submit">
-                Submit
-              </Button>
-            ) : (
-              <Button variant="contained" onClick={handleNext}>
-                Next
-              </Button>
-            )}
-          </Box>
-
         </Card>
       </Box>
     </Box>
