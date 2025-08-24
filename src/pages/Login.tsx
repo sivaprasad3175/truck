@@ -29,6 +29,7 @@ export default function Login({ onLogin, goRegister }: Props) {
 
   const handleLogin = () => {
     const users: User[] = JSON.parse(localStorage.getItem("users") || "[]");
+    console.log(users,'respone');
     const user = users.find((u) => u.email === email && u.password === password);
     if (user) {
       alert("Login successful");
@@ -155,7 +156,7 @@ export default function Login({ onLogin, goRegister }: Props) {
             <Typography variant="body2" textAlign="center" mt={2}>
               Don’t have an account?{" "}
               <Link
-                component="button"
+                // component="button"
                 variant="body2"
                 sx={{ fontWeight: "bold" }}
                 onClick={goRegister}
