@@ -208,7 +208,7 @@ export default function Home() {
           {/* Left Section */}
           <Box flex={1}>
             <Typography variant="h6" gutterBottom>
-              Mibility
+              Mbility
             </Typography>
             <Typography variant="body2">
               By submitting this form you agree to receive communications.
@@ -275,7 +275,7 @@ export default function Home() {
           }}
         >
           <Typography variant="body2">
-            © Mibility.com All rights reserved 2025 | Privacy & Legal Terms
+            © Mbility.com All rights reserved 2025 | Privacy & Legal Terms
           </Typography>
         </Box>
       </Box>
