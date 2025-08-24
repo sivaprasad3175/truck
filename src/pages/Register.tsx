@@ -339,11 +339,7 @@ export default function RegisterMUI() {
                   control={<Radio />}
                   label="Bank Transfer"
                 />
-                <FormControlLabel
-                  value="paypal"
-                  control={<Radio />}
-                  label="PayPal"
-                />
+
               </RadioGroup>
 
               {formData.paymentMethod === "card" && (
