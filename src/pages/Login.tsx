@@ -18,7 +18,7 @@ import logo from "../assets/logo.png";
 import signin from "../assets/signin.png"; // replace with your actual illustration
 
 interface Props {
-  onLogin: (email: string, password: string) => void;
+  onLogin: (user:User) => void;
   goRegister: () => void;
 }
 
@@ -33,7 +33,7 @@ export default function Login({ onLogin, goRegister }: Props) {
     const user = users.find((u) => u.email === email && u.password === password);
     if (user) {
       alert("Login successful");
-      onLogin(email, password);
+      onLogin(user);
     } else {
       alert("Invalid credentials");
     }

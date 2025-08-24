@@ -33,7 +33,7 @@ export default function RegisterMUI() {
     fullName: "",
     email: "",
     mobile: "",
-    role: "",
+    role: "broker",
     mcNumber: "",
     dotNumber: "",
     plan: "basic",
@@ -101,8 +101,6 @@ export default function RegisterMUI() {
       if (formData.password !== formData.confirmPassword)
         newErrors.confirmPassword = "Passwords do not match";
     } 
-
-          console.log("No validation for step", step);
 
 
     setErrors(newErrors);
