@@ -436,8 +436,8 @@ console.log(user,'namm');
                           <TableCell>{load.id}</TableCell>
                           <TableCell>{load.status}</TableCell>
                           <TableCell>{load.pickup}</TableCell>
-                          <TableCell>{load.carrier}</TableCell>
-                          <TableCell>{load.value}</TableCell>
+                          <TableCell>{load.weight}</TableCell>
+                          <TableCell>{load.cargo}</TableCell>
                           <TableCell>
                             <MoreVertIcon fontSize="small" />
                           </TableCell>
