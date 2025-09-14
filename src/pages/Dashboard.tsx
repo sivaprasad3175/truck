@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useLocation, Route } from 'wouter';
 import {
   Box,
   AppBar,
@@ -24,7 +23,6 @@ import {
   TableRow,
   CssBaseline,
   ListItemButton,
-  Avatar,
   Menu,
 } from '@mui/material';
 import {
@@ -59,7 +57,7 @@ interface SidebarItem {
   path: string;
 }
 
-export default function DashboardFull() {
+export default function Dashboard({ user, onLogout }: { user: { name: string }; onLogout: () => void }) {
   const [location, setLocation] = useState("Dashboard");
   const [selectedRegion, setSelectedRegion] = useState('all');
   const [menuAnchor, setMenuAnchor] = useState<null | HTMLElement>(null);
@@ -73,6 +71,7 @@ export default function DashboardFull() {
 
   const handleLogout = () => {
     setMenuAnchor(null);
+    onLogout()
   };
 
   // Sidebar items
@@ -206,7 +205,7 @@ export default function DashboardFull() {
       status: "Delivered",
     },
   ];
-
+console.log(user,'namm');
   return (
     <Box sx={{ display: 'flex', minHeight: '100vh' }}>
       <CssBaseline />
@@ -239,11 +238,11 @@ export default function DashboardFull() {
             </Box>
 
             <IconButton onClick={handleMenuOpen} sx={{ ml: 2 }} aria-label="User Menu">
-              <Avatar
-                alt="User Avatar"
-                src="/static/images/avatar/1.jpg"
-                sx={{ width: 32, height: 32 }}
-              />
+
+              <Typography variant="subtitle1" sx={{ width: 32, height: 32 }}
+              >
+                {"A".toUpperCase()}
+              </Typography>
               <ChevronDown size={18} />
             </IconButton>
 

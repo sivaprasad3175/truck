@@ -104,7 +104,7 @@ export default function App() {
           {currentUser ? (
             <Dashboard
               key={Date.now()}    // Force re-mount every time user clicks "Dashboard"
-              user={currentUser.email}
+              user={currentUser}
               onLogout={handleLogout}
             />
           ) : (

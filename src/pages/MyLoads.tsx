@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useState } from "react";
+import { useState } from "react";
 import {
   Card,
   CardContent,
@@ -169,7 +169,7 @@ const MyLoads = ({ loads }: { loads: Load[] }) => {
       <Box sx={{ borderBottom: 1, borderColor: "divider", mb: 2 }}>
         <Tabs
           value={tabValue}
-          onChange={(e, newValue) => setTabValue(newValue)}
+          onChange={(_e, newValue) => setTabValue(newValue)}
           variant="fullWidth"   // ✅ force tabs to share equal width
           sx={{
             "& .MuiTab-root": {
