@@ -1,16 +1,17 @@
-import { Route, Switch, Redirect, useLocation } from "wouter";
+import { Route, Switch, useLocation } from "wouter";
 import Home from "./pages/Home";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import type { User } from "./types";
+import { Typography } from "@mui/material";
 
 export default function App() {
-  const [, navigate] = useLocation();
+  const [location, navigate] = useLocation();
   const [currentUser, setCurrentUser] = useState<User | null>(() => {
     const stored = localStorage.getItem("loggedInUser");
-    return stored ? JSON.parse(stored) as User : null;
+    return stored ? (JSON.parse(stored) as User) : null;
   });
 
   const handleLogout = () => {
@@ -19,41 +20,120 @@ export default function App() {
     navigate("/login");
   };
 
+  useEffect(() => {
+    // If not logged in and on protected route, redirect to login
+    if (!currentUser && location.startsWith("/dashboard")) {
+      navigate("/login");
+    }
+  }, [currentUser, location, navigate]);
+
+  function Search() {
+    return <Typography variant="h4">Search Page</Typography>;
+  }
+
+  function MyLoads() {
+    return <Typography variant="h4">My Loads Page</Typography>;
+  }
+
+  function RightNow() {
+    return <Typography variant="h4">Right Now Page</Typography>;
+  }
+
+  function MobilitySelect() {
+    return <Typography variant="h4">Mobility Select Page</Typography>;
+  }
+
+  function Compliance() {
+    return <Typography variant="h4">Compliance & Safety Page</Typography>;
+  }
+
+  function MobiTracELD() {
+    return <Typography variant="h4">MobiTrac ELD Page</Typography>;
+  }
+
+  function CalendarPage() {
+    return <Typography variant="h4">Calendar Page</Typography>;
+  }
+
+  function Reports() {
+    return <Typography variant="h4">Reports Page</Typography>;
+  }
+
+  function Documents() {
+    return <Typography variant="h4">Documents Page</Typography>;
+  }
+
+  function TrackMyStuff() {
+    return <Typography variant="h4">Track My Stuff Page</Typography>;
+  }
+
+  function PaymentGateway() {
+    return <Typography variant="h4">Payment Gateway Page</Typography>;
+  }
+
+  function ChatPage() {
+    return <Typography variant="h4">Chat Page</Typography>;
+  }
+
+  function LiveSupport() {
+    return <Typography variant="h4">Live Support Page</Typography>;
+  }
+
+  function Tools() {
+    return <Typography variant="h4">Tools Page</Typography>;
+  }
+
   return (
     <div style={{ background: "#f4f4f4", minHeight: "100vh" }}>
       <Switch>
-        <Route path="/">
-          <Home />
-        </Route>
-
-        <Route path="/register">
-          <Register />
-        </Route>
-
-        <Route path="/dashboard">
-          {currentUser ? (
-            <Dashboard user={currentUser.email} onLogout={handleLogout} />
-          ) : (
-            <Redirect to="/login" />
-          )}
-        </Route>
+        <Route path="/" component={Home} />
+        <Route path="/register" component={Register} />
 
         <Route path="/login">
           <Login
-            onLogin={(user : User) => {
-              // ✅ Mock authentication
+            onLogin={(user: User) => {
               localStorage.setItem("loggedInUser", JSON.stringify(user));
               setCurrentUser(user);
-              // ✅ Navigate to dashboard after login
               navigate("/dashboard");
             }}
             goRegister={() => navigate("/register")}
           />
         </Route>
 
-        {/* catch-all redirect */}
+        <Route path="/dashboard">
+          {currentUser ? (
+            <Dashboard
+              key={Date.now()}    // Force re-mount every time user clicks "Dashboard"
+              user={currentUser.email}
+              onLogout={handleLogout}
+            />
+          ) : (
+            null
+          )}
+        </Route>
+
+
+        <Route path="/search" component={Search} />
+        <Route path="/my-loads" component={MyLoads} />
+        <Route path="/right-now" component={RightNow} />
+        <Route path="/mobility-select" component={MobilitySelect} />
+        <Route path="/compliance-safety" component={Compliance} />
+        <Route path="/mobitrac-eld" component={MobiTracELD} />
+        <Route path="/calendar" component={CalendarPage} />
+        <Route path="/reports" component={Reports} />
+        <Route path="/documents" component={Documents} />
+        <Route path="/track-my-stuff" component={TrackMyStuff} />
+        <Route path="/payment-gateway" component={PaymentGateway} />
+        <Route path="/chat" component={ChatPage} />
+        <Route path="/live-support" component={LiveSupport} />
+        <Route path="/tools" component={Tools} />
+
+        {/* Fallback */}
         <Route>
-          <Redirect to="/" />
+          {() => {
+            navigate("/");
+            return null;
+          }}
         </Route>
       </Switch>
     </div>

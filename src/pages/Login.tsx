@@ -14,7 +14,7 @@ import {
 } from "@mui/material";
 import { Visibility, VisibilityOff, Person } from "@mui/icons-material";
 import type { User } from "../types";
-import logo from "../assets/logo.png";
+import logo from "../assets/theme_logo.png";
 import signin from "../assets/signin.png"; // replace with your actual illustration
 
 interface Props {
