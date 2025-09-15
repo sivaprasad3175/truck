@@ -29,11 +29,8 @@ import {
   CardActionArea
 } from '@mui/material';
 import {
-  Truck,
-  Clock,
   ChevronDown,
   Bell,
-  CheckCircle,
 } from 'lucide-react';
 import MapIcon from '../assets/maps.png';
 import DashboardIcon from '@mui/icons-material/Dashboard';

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import {
   Box,
   Card,
@@ -9,10 +9,8 @@ import {
   Button,
   Chip,
   Divider,
-  IconButton,
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
-import FilterListIcon from "@mui/icons-material/FilterList";
 
 const sampleData = [
   {
@@ -32,39 +30,52 @@ const sampleData = [
   },
   {
     id: "C-002",
-    name: "Swift Transportation",
-    location: "Phoenix, AZ",
-    fleetSize: "18,500",
-    onTime: "96.5%",
-    responseTime: "< 15 min",
-    specialization: ["Temperature Controlled", "Hazmat"],
-    lastActivity: "1/8/2025",
-    completedLoads: "1,247",
-    averageRate: "$2.45/mile",
-    equipmentTypes: ["Dry Van", "Reefer", "Flatbed"],
-    status: "active",
-    rating: "4.6",
+    name: "Knight Logistics",
+    location: "Dallas, TX",
+    fleetSize: "8,200",
+    onTime: "95.1%",
+    responseTime: "< 10 min",
+    specialization: ["Dry Van"],
+    lastActivity: "1/10/2025",
+    completedLoads: "850",
+    averageRate: "$2.35/mile",
+    equipmentTypes: ["Dry Van"],
+    status: "inactive",
+    rating: "4.3",
   },
   {
     id: "C-003",
-    name: "Swift Transportation",
-    location: "Phoenix, AZ",
-    fleetSize: "18,500",
-    onTime: "96.5%",
-    responseTime: "< 15 min",
-    specialization: ["Temperature Controlled", "Hazmat"],
-    lastActivity: "1/8/2025",
-    completedLoads: "1,247",
-    averageRate: "$2.45/mile",
-    equipmentTypes: ["Dry Van", "Reefer", "Flatbed"],
+    name: "J.B. Hunt",
+    location: "Lowell, AR",
+    fleetSize: "12,000",
+    onTime: "97.0%",
+    responseTime: "< 20 min",
+    specialization: ["Flatbed", "Intermodal"],
+    lastActivity: "1/7/2025",
+    completedLoads: "2,100",
+    averageRate: "$2.60/mile",
+    equipmentTypes: ["Flatbed", "Intermodal"],
     status: "active",
-    rating: "4.6",
+    rating: "4.8",
   },
 ];
 
 const MobilitySelectPage = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [statusFilter, setStatusFilter] = useState("All Status");
+
+  // ✅ Apply filters
+  const filteredData = sampleData.filter((item) => {
+    const matchesSearch =
+      item.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      item.location.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      item.id.toLowerCase().includes(searchTerm.toLowerCase());
+
+    const matchesStatus =
+      statusFilter === "All Status" || item.status.toLowerCase() === statusFilter.toLowerCase();
+
+    return matchesSearch && matchesStatus;
+  });
 
   return (
     <Box p={4}>
@@ -73,43 +84,56 @@ const MobilitySelectPage = () => {
         <Typography variant="h5" fontWeight={600}>
           Mobility Select
         </Typography>
-        <Box display="flex" gap={2}>
-          <Button variant="outlined">+ Add by VLM ID</Button>
-          <Button variant="contained">+ Add Manually</Button>
+        <Box display="flex" gap={1}>
+          <Button variant="outlined" size="small" sx={{ py: 0.5, px: 1.5 }}>
+            + Add by VLM ID
+          </Button>
+          <Button variant="contained" size="small" sx={{ py: 0.5, px: 1.5 }}>
+            + Add Manually
+          </Button>
         </Box>
       </Box>
 
       {/* Search + Status Filter */}
-      <Box display="flex" gap={2} alignItems="center" mb={3}>
-        <TextField
-          variant="outlined"
-          size="small"
-          placeholder="Search"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          InputProps={{
-            startAdornment: <SearchIcon />,
-          }}
-        />
-        <TextField
-          select
-          variant="outlined"
-          size="small"
-          value={statusFilter}
-          onChange={(e) => setStatusFilter(e.target.value)}
-        >
-          <MenuItem value="All Status">All Status</MenuItem>
-          <MenuItem value="Active">Active</MenuItem>
-          <MenuItem value="Inactive">Inactive</MenuItem>
-        </TextField>
-        <Button variant="outlined" startIcon={<FilterListIcon />}>
-          Advanced Filters
-        </Button>
+      <Box
+        display="flex"
+        gap={2}
+        mb={3}
+        justifyContent="space-between"
+        alignItems="center"
+      >
+        {/* Left side: search + status filter */}
+        <Box display="flex" alignItems="center" gap={1}>
+          <TextField
+            variant="outlined"
+            size="small"
+            placeholder="Search"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            InputProps={{
+              startAdornment: <SearchIcon />,
+            }}
+          />
+          <TextField
+            select
+            variant="outlined"
+            size="small"
+            value={statusFilter}
+            onChange={(e) => setStatusFilter(e.target.value)}
+          >
+            <MenuItem value="All Status">All Status</MenuItem>
+            <MenuItem value="Active">Active</MenuItem>
+            <MenuItem value="Inactive">Inactive</MenuItem>
+          </TextField>
+        </Box>
+
       </Box>
+
+
 
       {/* Cards List */}
       <Box display="flex" flexDirection="column" gap={2}>
-        {sampleData.map((item) => (
+        {filteredData.map((item) => (
           <Card key={item.id} variant="outlined">
             <CardContent>
               <Box display="flex" justifyContent="space-between" alignItems="center" mb={2}>

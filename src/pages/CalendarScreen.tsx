@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import {
   Box,
   Typography,
@@ -47,7 +47,6 @@ const CalendarScreen = () => {
               displayStaticWrapperAs="desktop"
               value={selectedDate}
               onChange={(newDate) => setSelectedDate(newDate)}
-              renderInput={(params) => <TextField {...params} />}
             />
           </Card>
 
