@@ -5,40 +5,14 @@ import {
   CardContent,
   Typography,
   Box,
-  TextField,
-  MenuItem,
-  Tabs,
-  Tab,
-  Table,
-  TableHead,
-  TableRow,
-  TableCell,
-  TableBody,
-  IconButton,
 } from "@mui/material";
-import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { DatePicker } from "@mui/x-date-pickers/DatePicker";
-import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
-import { MoreVert } from "@mui/icons-material";
-import ListAltIcon from "@mui/icons-material/ListAlt";
-import LocalShippingIcon from "@mui/icons-material/LocalShipping";
-import AssignmentTurnedInIcon from "@mui/icons-material/AssignmentTurnedIn";
+
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
-import CancelIcon from "@mui/icons-material/Cancel";
 import  activeLoads from "../assets/activeLoads.png";
 import  pendingLoads from "../assets/pendingLoads.png";
 import  revenue from "../assets/revenue.png";
 import  totalMiles from "../assets/totalMiles.png";
 
-
-const statusTabs = [
-  { label: "All", value: "all", icon: <ListAltIcon />, color: "#1976d2" },
-  { label: "Active", value: "active", icon: <LocalShippingIcon />, color: "#0288d1" },
-  { label: "In Transit", value: "in transit", icon: <AssignmentTurnedInIcon />, color: "#f57c00" },
-  { label: "Booked", value: "booked", icon: <AssignmentTurnedInIcon />, color: "#673ab7" },
-  { label: "Delivered", value: "delivered", icon: <CheckCircleIcon />, color: "#2e7d32" },
-  { label: "Cancelled", value: "cancelled", icon: <CancelIcon />, color: "#d32f2f" },
-];
 
 
 interface Load {
@@ -54,13 +28,8 @@ interface Load {
 }
 
 const RightNow = ({ loads }: { loads: Load[] }) => {
-  const [searchTerm, setSearchTerm] = useState("");
-  const [driver, setDriver] = useState("All Drivers");
-  const [carrier, setCarrier] = useState("All Carriers");
-  const [allLoads, setAllLoads] = useState("All Loads");
-
-  const [dateRange, setDateRange] = useState<any>(null);
-  const [tabValue, setTabValue] = useState("all");
+  const [searchTerm] = useState("");
+  const [tabValue] = useState("all");
   console.log("Loads data:", loads);
 
   // ✅ Filtering logic

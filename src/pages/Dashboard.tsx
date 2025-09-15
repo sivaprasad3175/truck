@@ -127,29 +127,6 @@ export default function Dashboard({ user, onLogout }: { user: { name: string }; 
   const [tabValue, setTabValue] = useState("all");
 
   // Sample data for loads
-  const another_activeLoads = [
-    {
-      id: "LD-2024-001",
-      status: "In Transit",
-      pickup: "Jan 19, 9:00 AM",
-      carrier: "Swift Transport",
-      value: "$2,450",
-    },
-    {
-      id: "LD-2024-002",
-      status: "Assigned",
-      pickup: "Jan 19, 9:00 AM",
-      carrier: "Swift Transport",
-      value: "$2,450",
-    },
-    {
-      id: "LD-2024-003",
-      status: "Unassigned",
-      pickup: "Jan 19, 9:00 AM",
-      carrier: "Swift Transport",
-      value: "$2,450",
-    },
-  ];
 
 
   // Sidebar items
