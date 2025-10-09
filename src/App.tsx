@@ -1,12 +1,11 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Route, Switch, useLocation } from "wouter";
-// import Home from "./pages/Home";
-// import Register from "./pages/Register";
-// import Login from "./pages/Login";
-// import Dashboard from "./pages/Dashboard";
+import Home from "./pages/Home";
+import Register from "./pages/Register";
+import Login from "./pages/Login";
+import Dashboard from "./pages/Dashboard";
 import { useState, useEffect } from "react";
 import type { User } from "./types";
-// import { Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 
 export default function App() {
   const [location, navigate] = useLocation();
@@ -17,8 +16,8 @@ export default function App() {
 
   const handleLogout = () => {
     setCurrentUser(null);
-    // localStorage.removeItem("loggedInUser");
-    // navigate("/login");
+    localStorage.removeItem("loggedInUser");
+    navigate("/login");
   };
 
   useEffect(() => {
@@ -26,69 +25,68 @@ export default function App() {
     if (!currentUser && location.startsWith("/dashboard")) {
       navigate("/login");
     }
-    handleLogout()
   }, [currentUser, location, navigate]);
 
-  // function Search() {
-  //   return <Typography variant="h4">Search Page</Typography>;
-  // }
+  function Search() {
+    return <Typography variant="h4">Search Page</Typography>;
+  }
 
-  // function MyLoads() {
-  //   return <Typography variant="h4">My Loads Page</Typography>;
-  // }
+  function MyLoads() {
+    return <Typography variant="h4">My Loads Page</Typography>;
+  }
 
-  // function RightNow() {
-  //   return <Typography variant="h4">Right Now Page</Typography>;
-  // }
+  function RightNow() {
+    return <Typography variant="h4">Right Now Page</Typography>;
+  }
 
-  // function MobilitySelect() {
-  //   return <Typography variant="h4">Mobility Select Page</Typography>;
-  // }
+  function MobilitySelect() {
+    return <Typography variant="h4">Mobility Select Page</Typography>;
+  }
 
-  // function Compliance() {
-  //   return <Typography variant="h4">Compliance & Safety Page</Typography>;
-  // }
+  function Compliance() {
+    return <Typography variant="h4">Compliance & Safety Page</Typography>;
+  }
 
-  // function MobiTracELD() {
-  //   return <Typography variant="h4">MobiTrac ELD Page</Typography>;
-  // }
+  function MobiTracELD() {
+    return <Typography variant="h4">MobiTrac ELD Page</Typography>;
+  }
 
-  // function CalendarPage() {
-  //   return <Typography variant="h4">Calendar Page</Typography>;
-  // }
+  function CalendarPage() {
+    return <Typography variant="h4">Calendar Page</Typography>;
+  }
 
-  // function Reports() {
-  //   return <Typography variant="h4">Reports Page</Typography>;
-  // }
+  function Reports() {
+    return <Typography variant="h4">Reports Page</Typography>;
+  }
 
-  // function Documents() {
-  //   return <Typography variant="h4">Documents Page</Typography>;
-  // }
+  function Documents() {
+    return <Typography variant="h4">Documents Page</Typography>;
+  }
 
-  // function TrackMyStuff() {
-  //   return <Typography variant="h4">Track My Stuff Page</Typography>;
-  // }
+  function TrackMyStuff() {
+    return <Typography variant="h4">Track My Stuff Page</Typography>;
+  }
 
-  // function PaymentGateway() {
-  //   return <Typography variant="h4">Payment Gateway Page</Typography>;
-  // }
+  function PaymentGateway() {
+    return <Typography variant="h4">Payment Gateway Page</Typography>;
+  }
 
-  // function ChatPage() {
-  //   return <Typography variant="h4">Chat Page</Typography>;
-  // }
+  function ChatPage() {
+    return <Typography variant="h4">Chat Page</Typography>;
+  }
 
-  // function LiveSupport() {
-  //   return <Typography variant="h4">Live Support Page</Typography>;
-  // }
+  function LiveSupport() {
+    return <Typography variant="h4">Live Support Page</Typography>;
+  }
 
-  // function Tools() {
-  //   return <Typography variant="h4">Tools Page</Typography>;
-  // }
+  function Tools() {
+    return <Typography variant="h4">Tools Page</Typography>;
+  }
 
   return (
     <div style={{ background: "#f4f4f4", minHeight: "100vh" }}>
       <Switch>
-        {/* <Route path="/" component={Home} />
+        <Route path="/" component={Home} />
         <Route path="/register" component={Register} />
 
         <Route path="/login">
@@ -128,7 +126,7 @@ export default function App() {
         <Route path="/payment-gateway" component={PaymentGateway} />
         <Route path="/chat" component={ChatPage} />
         <Route path="/live-support" component={LiveSupport} />
-        <Route path="/tools" component={Tools} /> */}
+        <Route path="/tools" component={Tools} />
 
         {/* Fallback */}
         <Route>
