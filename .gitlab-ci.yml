@@ -1,0 +1,31 @@
+image: node:18
+
+stages:
+  - build
+  - deploy
+
+cache:
+  paths:
+    - node_modules/
+
+before_script:
+  - npm ci
+
+build:
+  stage: build
+  script:
+    - npm run build
+    - mv build public
+    - cp public/index.html public/404.html
+  artifacts:
+    paths:
+      - public
+
+pages:
+  stage: deploy
+  script: []
+  artifacts:
+    paths:
+      - public
+  only:
+    - main
