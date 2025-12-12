@@ -32,7 +32,6 @@ export default function Login({ onLogin, goRegister }: Props) {
     console.log(users,'respone');
     const user = users.find((u) => u.email === email && u.password === password);
     if (user) {
-      alert("Login successful");
       onLogin(user);
     } else {
       alert("Invalid credentials");

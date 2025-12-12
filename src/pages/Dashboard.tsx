@@ -104,7 +104,7 @@ const PendingActions = [
 
 
 
-export default function Dashboard({ user, onLogout }: { user: { name: string }; onLogout: () => void }) {
+export default function Dashboard({ user, onLogout }: { user: { name: string, role: string }; onLogout: () => void }) {
   const [location, setLocation] = useState("Dashboard");
   const [selectedRegion, setSelectedRegion] = useState('all');
   const [menuAnchor, setMenuAnchor] = useState<null | HTMLElement>(null);
@@ -354,8 +354,9 @@ export default function Dashboard({ user, onLogout }: { user: { name: string }; 
       >
         <Box sx={{ overflow: 'auto' }}>
           <Typography variant="h6" sx={{ p: 2 }}>
-            Broker View
+            {user?.role} View
           </Typography>
+
           <Divider />
           <List>
             {sidebarItems.map((item, index) =>
@@ -426,8 +427,8 @@ export default function Dashboard({ user, onLogout }: { user: { name: string }; 
                           height: "100%", // child will stretch fully
                         }}
                       >
-            <img src={kpi.icon} alt="App Logo" />
-                             <Typography variant="subtitle2" sx={{ mt: 1 }}>
+                        <img src={kpi.icon} alt="App Logo" />
+                        <Typography variant="subtitle2" sx={{ mt: 1 }}>
                           {kpi.label}
                         </Typography>
                         <Typography variant="h5">{kpi.value}</Typography>
@@ -770,9 +771,9 @@ export default function Dashboard({ user, onLogout }: { user: { name: string }; 
           </Box>}
         {location === 'My Loads' && <MyLoads loads={activeLoads} />}
         {location === 'Right Now' && <RightNow loads={activeLoads} />}
-        {location === 'Mobility Select' && <MobilitySelectPage/>}
+        {location === 'Mobility Select' && <MobilitySelectPage />}
         {location === 'Calendar' && <CalendarScreen />}
-       {!["Dashboard", "My Loads", "Right Now", "Mobility Select","Calendar"].includes(location) && <ComingSoonPage />}
+        {!["Dashboard", "My Loads", "Right Now", "Mobility Select", "Calendar"].includes(location) && <ComingSoonPage />}
 
       </Box>
     </Box>

@@ -7,12 +7,57 @@ import { useState, useEffect } from "react";
 import type { User } from "./types";
 import { Typography } from "@mui/material";
 
+
+
 export default function App() {
   const [location, navigate] = useLocation();
   const [currentUser, setCurrentUser] = useState<User | null>(() => {
     const stored = localStorage.getItem("loggedInUser");
     return stored ? (JSON.parse(stored) as User) : null;
   });
+
+  const testUsers = [
+  {
+    name: "Test Driver",
+    email: "Driver@mbility.co",
+    password: "driver123",
+    role: "Driver",
+  },
+  {
+    name: "Test Dispatcher",
+    email: "Dispatch@mbility.co",
+    password: "dispatch123",
+    role: "Dispatcher",
+  },
+  {
+    name: "Test Broker",
+    email: "Broker@mbility.co",
+    password: "broker123",
+    role: "Broker",
+  },
+  {
+    name: "Test Vendor",
+    email: "Vendor@mbility.co",
+    password: "vendor123",
+    role: "Vendor",
+  },
+  {
+    name: "Test Regulator",
+    email: "Regulator@mbility.co",
+    password: "regulator123",
+    role: "Regulator",
+  },
+  {
+    name: "Test Shipper",
+    email: "Shipper@mbility.co",
+    password: "shipper123",
+    role: "Shipper",
+  },
+];
+
+if (!localStorage.getItem("users")) {
+  localStorage.setItem("users", JSON.stringify(testUsers));
+}
 
   const handleLogout = () => {
     setCurrentUser(null);
