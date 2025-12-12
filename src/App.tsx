@@ -125,7 +125,7 @@ if (!localStorage.getItem("users")) {
   }
 
   function Tools() {
-    return <Typography variant="h4">Tools Page</Typography>;
+    return <Typography variant="h4">Tools Page </Typography>;
   }
 
   return (
