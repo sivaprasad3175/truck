@@ -55,9 +55,13 @@ export default function App() {
   },
 ];
 
-if (!localStorage.getItem("users")) {
-  localStorage.setItem("users", JSON.stringify(testUsers));
-}
+useEffect(() => {
+  localStorage.removeItem("users");
+    localStorage.setItem("users", JSON.stringify(testUsers));
+    console.log("Test users initialized in localStorage.",testUsers);
+}, []);
+
+
 
   const handleLogout = () => {
     setCurrentUser(null);
@@ -125,7 +129,7 @@ if (!localStorage.getItem("users")) {
   }
 
   function Tools() {
-    return <Typography variant="h4">Tools Page </Typography>;
+    return <Typography variant="h4">Tools Page</Typography>;
   }
 
   return (

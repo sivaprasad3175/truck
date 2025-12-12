@@ -18,7 +18,7 @@ import logo from "../assets/theme_logo.png";
 import signin from "../assets/signin.png"; // replace with your actual illustration
 
 interface Props {
-  onLogin: (user:User) => void;
+  onLogin: (user: User) => void;
   goRegister: () => void;
 }
 
@@ -28,8 +28,51 @@ export default function Login({ onLogin, goRegister }: Props) {
   const [showPassword, setShowPassword] = useState(false);
 
   const handleLogin = () => {
+    const testUsers = [
+      {
+        name: "Test Driver",
+        email: "Driver@mbility.co",
+        password: "driver123",
+        role: "Driver",
+      },
+      {
+        name: "Test Dispatcher",
+        email: "Dispatch@mbility.co",
+        password: "dispatch123",
+        role: "Dispatcher",
+      },
+      {
+        name: "Test Broker",
+        email: "Broker@mbility.co",
+        password: "broker123",
+        role: "Broker",
+      },
+      {
+        name: "Test Vendor",
+        email: "Vendor@mbility.co",
+        password: "vendor123",
+        role: "Vendor",
+      },
+      {
+        name: "Test Regulator",
+        email: "Regulator@mbility.co",
+        password: "regulator123",
+        role: "Regulator",
+      },
+      {
+        name: "Test Shipper",
+        email: "Shipper@mbility.co",
+        password: "shipper123",
+        role: "Shipper",
+      },
+    ];
+
+    if (!localStorage.getItem("users")) {
+      localStorage.setItem("users", JSON.stringify(testUsers));
+    }
+
     const users: User[] = JSON.parse(localStorage.getItem("users") || "[]");
-    console.log(users,'respone');
+    console.log(users, 'respone');
     const user = users.find((u) => u.email === email && u.password === password);
     if (user) {
       onLogin(user);
